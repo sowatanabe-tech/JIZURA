@@ -136,6 +136,10 @@ button.tap { font: 700 18px/1 var(--mono); letter-spacing: 0.2em; padding: 16px;
 .transport { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .transport .tc { font: 500 13px var(--mono); font-variant-numeric: tabular-nums; }
 .transport input[type=range] { flex: 1 1 160px; accent-color: var(--amber); }
+.time-copy { display: inline-flex; align-items: center; gap: 4px; padding: 3px 5px; border: 1px solid var(--line2); border-radius: calc(var(--r) + 2px); background: var(--panel); white-space: nowrap; }
+.time-copy button { min-width: 52px; }
+.time-copy .time-copy-now { background: var(--amber); color: var(--ink); border-color: var(--amber); font-weight: 700; }
+.time-copy-status { min-width: 74px; color: var(--muted); font: 11px/1.15 var(--mono); text-align: center; }
 button.play { width: 40px; height: 34px; padding: 0; font-size: 14px; }
 #timeline { width: 100%; height: 76px; display: block; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); cursor: pointer; touch-action: none; }
 .cutinfo { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; min-height: 26px; }
@@ -259,6 +263,11 @@ dialog.terms a { color: var(--cyan); word-break: break-all; }
 .terms-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid var(--line); padding-top: 12px; }
 
 /* ---------- responsive ---------- */
+@media (min-width: 1181px) {
+  html, body { overflow: hidden; }
+  #app { height: 100%; overflow: hidden; }
+  .work { overflow: hidden; }
+}
 @media (max-width: 1180px) {
   .work { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   html[lang=en] .work { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }

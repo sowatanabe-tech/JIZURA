@@ -786,6 +786,22 @@ function bind() {
   $('syncMute').addEventListener('click', syncMute);
   $('syncLRC').addEventListener('click', syncSaveLRC);
   $('btnPlay').addEventListener('click', () => (S.playing ? pause() : play()));
+  document.querySelectorAll('[data-copy-time]').forEach(btn => btn.addEventListener('click', async () => {
+    const value = Math.max(0, S.t + (+btn.dataset.copyTime || 0)).toFixed(2);
+    let copied = false;
+    const ta = document.createElement('textarea');
+    ta.value = value; ta.readOnly = true; ta.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try { copied = document.execCommand('copy'); } catch (e) {}
+    ta.remove();
+    if (!copied && navigator.clipboard && navigator.clipboard.writeText) {
+      try { await navigator.clipboard.writeText(value); copied = true; } catch (e) {}
+    }
+    const status = $('timeCopyStatus');
+    status.textContent = copied ? value + ' ✓' : 'コピー失敗';
+    clearTimeout(status._timer);
+    status._timer = setTimeout(() => { status.textContent = 'クリックでコピー'; }, 1800);
+  }));
   $('btnLoop').addEventListener('click', e => { S.loop = !S.loop; e.target.setAttribute('aria-pressed', String(S.loop)); });
   $('btnShuffle').addEventListener('click', () => { remember(); S.project.seed = (Math.random() * 1e9) | 0; $('seed').value = S.project.seed; replan(); commit(); });
   const sc = $('scrub');

@@ -96,6 +96,12 @@
       <div class="transport">
         <button id="btnPlay" class="play" aria-label="再生">▶</button>
         <span id="timeNow" class="tc">00:00.00</span><span class="tc muted">/</span><span id="timeDur" class="tc muted">00:00.00</span>
+        <span class="time-copy" role="group" aria-label="停止位置の秒数をコピー">
+          <button type="button" class="ghost small" data-copy-time="-0.1" title="停止位置の0.1秒前をコピー">−0.1秒</button>
+          <button type="button" class="small time-copy-now" data-copy-time="0" title="停止位置をコピー">現在</button>
+          <button type="button" class="ghost small" data-copy-time="0.1" title="停止位置の0.1秒後をコピー">＋0.1秒</button>
+          <span id="timeCopyStatus" class="time-copy-status" role="status" aria-live="polite">クリックでコピー</span>
+        </span>
         <input id="scrub" type="range" min="0" max="10000" value="0" aria-label="再生位置">
         <button id="btnLoop" class="ghost small" aria-pressed="true">ループ</button>
         <span class="hist-btns">
