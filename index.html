@@ -281,12 +281,28 @@ dialog.terms a { color: var(--cyan); word-break: break-all; }
 .terms-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid var(--line); padding-top: 12px; }
 
 /* ---------- responsive ---------- */
-@media (min-width: 1181px) {
-  html, body { overflow: hidden; }
-  #app { height: 100%; overflow: hidden; }
-  .work { overflow: hidden; }
+@media (min-width: 960px) {
+  html, body { overflow: hidden; overscroll-behavior: none; }
+  #app { height: 100dvh; min-height: 0; overflow: hidden; }
+  .bar { flex: 0 0 auto; }
+  .work { height: 100%; min-height: 0; overflow: hidden; }
+  .col-left, .col-right {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+  }
+  .col-stage {
+    position: sticky;
+    top: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  .viewport { flex: 1 1 auto; min-height: 0; }
+  .viewport canvas { max-width: 100%; max-height: 100%; }
 }
-@media (max-width: 1180px) {
+@media (min-width: 761px) and (max-width: 959px) {
   .work { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   html[lang=en] .work { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .col-stage { grid-column: 1 / -1; order: -1; }
