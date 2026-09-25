@@ -8,6 +8,10 @@ os.chdir(ROOT)
 read = lambda p: open(p, encoding='utf-8').read()
 sources = sorted(glob.glob('src/*.js'))
 js = '\n'.join(read(f) for f in sources)
+addon_sources = sorted(glob.glob('addons/*.js'))
+addon_styles = sorted(glob.glob('addons/*.css'))
+addons_js = '\n'.join(read(f) for f in addon_sources)
+addons_css = '\n'.join(read(f) for f in addon_styles)
 mux = '/*! mp4-muxer v5.2.2 | MIT License | (c) 2023 Vanilagy | see THIRD_PARTY_NOTICES.md */\n' + read('vendor/mp4-muxer.min.js')
 def build(lang):
     english = lang == 'en'
@@ -41,6 +45,7 @@ def build(lang):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
 {read('app/style.css')}
+{addons_css}
 </style>
 </head>
 <body>
@@ -50,6 +55,9 @@ def build(lang):
 </script>
 <script>
 {script}
+</script>
+<script>
+{addons_js}
 </script>
 </body>
 </html>

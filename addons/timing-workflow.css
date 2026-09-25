@@ -1,0 +1,4 @@
+/* Optional timing workflow helpers. Kept outside the upstream app styles. */
+.ln.timing-selected { box-shadow: inset 3px 0 0 var(--cyan); }
+.time-copy .paste-time { border-color: var(--cyan); color: var(--cyan); }
+#btnFollowLyrics[aria-pressed="true"] { border-color: var(--cyan); color: var(--cyan); }
